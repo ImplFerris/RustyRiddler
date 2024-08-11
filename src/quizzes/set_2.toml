@@ -1,0 +1,118 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the output?
+
+```rust
+fn main() { 
+    if let Some(x) = fn1().or(fn2()) {
+        println!("{x}");
+    }
+}
+
+fn fn1() -> Option<i8>{
+    println!("fn1");
+    return Some(1)
+}
+
+fn fn2() -> Option<i8> {
+    println!("fn2");
+    return None;
+}
+```
+"""
+prompt.distractors = [
+    "prints<br/>fn1<br/>1",
+    "Does not compile",
+    "Runtime panic",
+]
+answer.answer = "prints <br/>fn1<br/>fn2<br/>1"
+context = """
+`or` function returns the option if it contains a value, otherwise returns `optb`.
+
+Important: Arguments passed to `or` are eagerly evaluated; if you are passing the
+result of a function call, it is recommended to use [`or_else`], which is
+lazily evaluated.
+"""
+id = "1a8b4240-c8de-40cf-8d9e-fc7eed311d8f"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the output?
+
+```rust
+const MESSAGE: &str = "🦀";
+
+fn main() {
+    println!("{}", MESSAGE);
+    const MESSAGE: &str = "Hello Rust!";
+    println!("{}", MESSAGE);
+}
+```
+"""
+prompt.distractors = [
+    "It will print:<br/>🦀<br/>🦀",
+    "It will print:<br/>🦀<br/>Hello Rust!",
+    "Does not compile",
+]
+answer.answer = "It will print <br/>Hello Rust!<br/>Hello Rust!"
+context = """
+"""
+id = "4471c7fe-44ba-4e44-be55-de342d2b3df7"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the output?
+
+```rust
+fn main() {
+  let v1 = vec!{
+    1,
+    2,
+    3
+  };
+  let v2 = vec![1,2,3];
+  assert_eq!(v1,v2);
+  println!("Rust");
+}
+```
+"""
+prompt.distractors = ["Assertion fails and panic ", "Does not compile"]
+answer.answer = "Prints \"Rust\""
+context = """
+"""
+id = "790dffe2-0d0c-446b-a65b-410614664168"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the output?
+
+```rust
+use std::mem::size_of;
+
+fn main() {
+    if size_of::<&[i16; 5]>() == size_of::<&[i32; 1]>() {
+        println!("Hello");
+    }
+
+    if size_of::<&[i16; 1]>() == size_of::<&[i16]>() {
+        println!("World");
+    }
+}
+```
+"""
+prompt.distractors = [
+    "Prints <br/>\"Hello\"<br/>\"World\"",
+    "Does not compile",
+    "World",
+    "Nothing gets printed",
+]
+answer.answer = "Prints \"Hello\""
+context = """
+"""
+id = "8e9599ed-65b6-46b7-9308-a09bef3ad0e3"

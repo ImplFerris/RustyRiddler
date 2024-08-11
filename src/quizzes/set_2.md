@@ -2,5 +2,5 @@
 
 Collections of unorganized Rust Quizzes
 
-{{#quiz ./set_1.toml}}
+{{#quiz ./set_2.toml}}
 
