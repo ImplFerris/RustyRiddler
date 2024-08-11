@@ -1,0 +1,259 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the output?
+
+```rust
+fn main() {
+    let rust = 4919;
+    println!("{:#x}", rust);
+}
+```
+"""
+prompt.distractors = ["4919", "Does not compile"]
+answer.answer = "0x1337"
+context = """
+{:#x} is a format specifier that prints the number in hexadecimal.
+"""
+id = "91521f6b-6dc3-4963-aa63-6538cbb552ff"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the output?
+
+```rust
+struct Rectangle {
+    width: u32,
+    height: u32,
+}
+
+impl Rectangle {
+    fn print_values(self) {
+        println!("{} {}", self.width, self.height);
+    }
+}
+
+fn main() {
+    let rect = Rectangle {
+        width: 1,
+        height: 2,
+    };
+
+    for _ in 0..2 {
+        rect.print_values();
+    }
+}
+```
+"""
+prompt.distractors = [
+    "Prints: <br/> 1 2<br/>1 2",
+    "Prints: <br/> 1 2<br/>1 2<br/> 1 2",
+]
+answer.answer = "Does not compile"
+context = """
+The `print_values` method takes ownership of `self`, which causes rect to be moved. As a result, rect is no longer available in subsequent iterations of the loop after the first method call.
+
+The simple fix is to borrow `self` in `print_values` instead of taking ownership. 
+```rust
+fn print_values(&self) {
+    println!("{} {}", self.width, self.height);
+}
+```
+"""
+id = "a6e69b8d-7963-4743-a03e-7c49c732f4ee"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the output?
+
+```rust
+use std::mem;
+
+struct Person {
+    name: String,
+}
+
+impl Drop for Person {
+    fn drop(&mut self) {
+        println!("Drip Drip Drop");
+    }
+}
+
+fn main() {
+    let p = Person {
+        name: "Rust".to_string(),
+    };
+
+    mem::forget(p);
+}
+```
+"""
+prompt.distractors = [
+    "Prints \"Drip Drip Drop\"",
+    "Does not compile",
+    "Prints \"Rust\"",
+]
+answer.answer = "Prints nothing"
+context = """
+`mem::forget` function takes ownership and "forgets" about the value without running its destructor.
+"""
+id = "8e963211-f0e4-4ce6-8d88-155318eb0a84"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the output?
+
+```rust
+struct Person {
+    middle_name: Option<String>,
+}
+
+impl Person {
+    pub fn take_middle_name(&mut self) -> String {
+        std::mem::take(&mut self.middle_name).unwrap()
+    }
+}
+
+fn main() {
+    let mut p = Person {
+        middle_name: Some("C".to_string()),
+    };
+    println!("{}", p.take_middle_name());
+    println!("{:?}", p.middle_name);
+}
+```
+"""
+prompt.distractors = [
+    "Does not compile",
+    "Prints \"C\" and \"C\"",
+    "Runtime panic",
+]
+answer.answer = "Prints \"C\" and \"None\""
+context = """
+`mem::take` function replaces `dest` with the default value of `T`, returning the previous `dest` value. So in this case, it replaces middle_name with None.
+"""
+id = "ea3af618-87b8-418b-ac70-b1b7fbd3b0d1"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Which one will failed to compile
+
+Snippet X:
+```rust
+struct Quiz<'a>(&'a str);
+
+fn main() {
+    let r;
+    let s = String::from("Kernel");
+    r = Quiz(&s);
+    println!("{}", r.0);
+}
+```
+
+Snippet Y:
+```rust
+struct Quiz<'a>(&'a str);
+
+impl<'a> Drop for Quiz<'a> {
+    fn drop(&mut self) {
+        println!("Dropped");
+    }
+}
+
+fn main() {
+    let r;
+    let s = String::from("Kernel");
+    r = Quiz(&s);
+    println!("{}", r.0);
+}
+```
+"""
+prompt.distractors = [
+    "Both X and Y works",
+    "X fails to compile",
+    "X panics at run time",
+]
+answer.answer = "Y fails to compile"
+context = """
+"""
+id = "347f5f2e-e549-4e7c-bdd2-6a70419302ec"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the output in `debug` mode?
+
+```rust
+use std::{
+    sync::{Arc, Mutex},
+    thread,
+};
+
+fn main() {
+    let i: u8 = 255;
+    let data = Arc::new(Mutex::new(i));
+    let dc = data.clone();
+
+    let t = thread::spawn(move || {
+        let mut data = dc.lock().unwrap();
+        *data += 1;
+    })
+    .join();
+
+    match data.lock() {
+        Ok(v) => println!("{}", *v),
+        Err(_) => println!("Error"),
+    }
+
+    t.expect("Thread failed");
+}
+```
+"""
+prompt.distractors = ["Does not compile", "Prints 0"]
+answer.answer = "Runtime panic"
+context = """
+"""
+id = "3d9dfe45-9106-4694-920b-933e7cb3ca8a"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Which one will failed to compile
+
+Snippet X:
+```rust
+const NUMEBERS: [i32; 3] = [1, 2, 3];
+
+fn main() {
+    NUMEBERS[0] = 0;
+    println!("{}", NUMEBERS[0]);
+}
+```
+
+Snippet Y:
+```rust
+fn main() {
+    let numbers: [i32; 3] = [1, 2, 3];
+    numbers[0] = 0;
+    println!("{}", numbers[0]);
+}
+```
+"""
+prompt.distractors = [
+    "Both X and Y works",
+    "X fails to compile",
+    "Both X and Y fails to compile",
+]
+answer.answer = "Y fails to compile"
+context = """
+"""
+id = "65821627-c6f1-4f8e-aa3a-e43ce63458eb"

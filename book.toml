@@ -1,0 +1,9 @@
+[book]
+authors = ["ImplFerris"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Rusty Riddler"
+
+[preprocessor.quiz]
+cache-answers = false
