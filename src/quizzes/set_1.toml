@@ -143,7 +143,7 @@ id = "ea3af618-87b8-418b-ac70-b1b7fbd3b0d1"
 [[questions]]
 type = "MultipleChoice"
 prompt.prompt = """
-Which one will failed to compile
+Which one will fail to compile?
 
 Snippet X:
 ```rust
@@ -227,7 +227,7 @@ id = "3d9dfe45-9106-4694-920b-933e7cb3ca8a"
 [[questions]]
 type = "MultipleChoice"
 prompt.prompt = """
-Which one will failed to compile
+Which one will fail to compile?
 
 Snippet X:
 ```rust

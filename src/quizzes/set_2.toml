@@ -116,3 +116,255 @@ answer.answer = "Prints \"Hello\""
 context = """
 """
 id = "8e9599ed-65b6-46b7-9308-a09bef3ad0e3"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the output?
+
+```rust
+struct Person {
+    name: String,
+}
+fn main() {
+    let p = Person {
+        name: "Kernel".to_string(),
+    };
+    let _ = p.name;
+    let r1 = &p as *const Person;
+    let r2 = &p as *const Person;
+
+    drop(p);
+
+    println!("{}", r1 == r2);
+}
+```
+"""
+prompt.distractors = ["Does not compile", "Runtime error", "false"]
+answer.answer = "true"
+context = """
+"""
+id = "053d7572-3616-45bc-943c-36cfaf4578db"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Which one will fail to compile?
+
+Snippet X:
+```rust
+struct Prime;
+
+fn run<T: Fn(Prime)>(callback: Option<T>) {
+    if let Some(cb) = callback {
+        cb(Prime);
+    }
+}
+
+fn astra(_: Prime) {
+    println!("Kernel");
+}
+
+fn main() {
+    run(Some(astra));
+    run(None);
+}
+```
+
+Snippet Y:
+```rust
+struct Prime;
+
+fn run(callback: Option<fn(Prime)>) {
+    if let Some(cb) = callback {
+        cb(Prime);
+    }
+}
+
+fn astra(_: Prime) {
+    println!("Kernel");
+}
+
+fn main() {
+    run(Some(astra));
+    run(None);
+}
+```
+"""
+prompt.distractors = [
+    "Y fails to compile",
+    "X fails to compile",
+    "X prints \"Kernel\"",
+]
+answer.answer = "Y prints \"Kernel\""
+context = """
+"""
+id = "075fde4c-ed9f-4815-bb3d-9ba54f8d8884"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the output?
+
+```rust
+fn main() {
+    let mut n = 10;
+    let msg = "Kernel";
+    let msg = loop {
+        n += 1;
+        if n == 25 {
+            break "Rust";
+        } else if n % 7 == 0 {
+            break;
+        }
+    };
+
+    println!("{msg}");
+}
+```
+"""
+prompt.distractors = ["prints \"Kernel\"", "Runtime error", "prints \"Rust\""]
+answer.answer = "Does not compile"
+context = """
+"""
+id = "2c2a15fa-f09c-43ac-825f-48e801003bb1"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the output?
+
+```rust
+fn main() {
+    println!("{}", fun() == ());
+}
+
+fn fun() {
+}
+```
+"""
+prompt.distractors = ["Does not compile", "false"]
+answer.answer = "true"
+context = """
+"""
+id = "74b57fd2-a380-4cfb-a494-690213807f3a"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Which one will fail to compile?
+
+Snippet X:
+```rust
+use std::thread;
+
+fn main() {
+    static NUMBERS: [i32; 3] = [1, 2, 3];
+
+    let t1 = thread::spawn(move || println!("{}", NUMBERS.len()));
+    let t2 = thread::spawn(|| println!("{}", NUMBERS.len()));
+    t1.join().unwrap();
+    t2.join().unwrap();
+}
+```
+
+Snippet Y:
+```rust
+use std::thread;
+
+fn main() {
+    static NUMBERS: [i32; 3] = [1, 2, 3];
+
+    let t1 = thread::spawn(|| println!("{}", NUMBERS.len()));
+    let t2 = thread::spawn(|| println!("{}", NUMBERS.len()));
+    t1.join().unwrap();
+    t2.join().unwrap();
+}
+```
+"""
+prompt.distractors = [
+    "Y fails to compile",
+    "X fails to compile",
+    "Both fails to compile",
+]
+answer.answer = "Both compiles"
+context = """
+"""
+id = "f9cf9952-6607-4103-8bca-be59cdb9f78b"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the output?
+
+```rust
+use std::process::exit;
+
+fn main(){
+    test();
+}
+
+fn test() -> ! {
+    println!("Kernel");
+    exit(1);
+}
+```
+"""
+prompt.distractors = ["Runtime error", "Does not compile"]
+answer.answer = "Prints \"Kernel\""
+context = """
+"""
+id = "b2330f1b-d014-44e3-84b9-d2da367e31c8"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Will it compile? If so, How many times 💯 gets printed?
+
+```rust
+fn main() {
+    let a1 = [100, 70, 90];
+    let a2 = [80, 80, 100];
+
+    let checker = |s: &[u32]| match s {
+        [100, ..] => println!("💯"),
+        _ => println!("-"),
+    };
+
+    checker(&a1);
+    checker(&a2);
+}
+```
+"""
+prompt.distractors = ["two time", "Does not compile", "six time"]
+answer.answer = "one time"
+context = """
+"""
+id = "60955b92-a543-444a-b41c-6829312b725e"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the output?
+
+```rust
+fn main() {
+    let langs = ("Rust", "JS", "Python");
+    let (l, ..) = langs;
+    println!("{l}");
+}
+```
+"""
+prompt.distractors = ["Runtime error", "Does not compile"]
+answer.answer = "Rust"
+context = """
+"""
+id = "dbbad23b-f824-42f7-bb88-3fa6560ed643"

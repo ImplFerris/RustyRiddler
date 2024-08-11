@@ -1,0 +1,281 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the output?
+
+```rust
+struct Foo(u8);
+
+impl Drop for Foo {
+    fn drop(&mut self) {
+        println!("{}", self.0);
+    }
+}
+
+fn abc<'hello>() {
+    let x: &'hello mut Foo = Box::leak(Box::new(Foo(0)));
+    let _ = x;
+
+    let foo = Foo(1);
+    let _ = foo;
+    let _ = Foo(2);
+    let foo1 = Foo(3);
+    let _ = foo;
+    let _ = foo1;
+}
+
+fn main() {
+    abc();
+}
+```
+"""
+prompt.distractors = [
+    "prints <br/>0<br/>1<br/>2<br/>3",
+    "Does not compile",
+    "prints <br/>2<br/>1<br/>3",
+]
+answer.answer = "prints <br/>2<br/>3<br/>1"
+context = """
+"""
+id = "65673f84-f516-4bb6-86ea-e377636197fa"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the output?
+
+```rust
+fn main() {
+    let mut x = 1;
+    x += 1;
+    {
+        let x = x + 1;
+    }
+
+    x += 1;
+    println!("{}", x);
+}
+```
+"""
+prompt.distractors = ["1", "Does not compile", "4"]
+answer.answer = "3"
+context = """
+"""
+id = "3c449b7c-53ff-4537-a2a6-966b85212135"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the output?
+
+```rust
+fn main() {
+    let mut x = 1;
+    x += 1;
+
+    let x = x + 1;
+
+    x += 1;
+    println!("{}", x);
+}
+
+```
+"""
+prompt.distractors = ["1", "3", "4"]
+answer.answer = "Does not compile"
+context = """
+"""
+id = "4929a35a-9d9d-4b41-b8f4-8406fdd86358"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the result in "release" mode?
+
+Snippet X:
+```rust
+fn main(){
+  let a : &u8 = &4;
+  let b = a<<30; 
+  println!("{}", b);
+}
+```
+
+Snippet Y:
+```rust
+fn main(){
+  let a : &u8 = &4;
+  let b = *a<<30; 
+  println!("{}", b);
+}
+```
+"""
+prompt.distractors = [
+    "X gives compilation error and Y prints 0",
+    "X gives compilation error and Y gives runtime error",
+    "Both X and Y give compilation error",
+]
+answer.answer = "Y gives compilation error and X prints 0"
+context = """
+"""
+id = "568bc189-6249-4721-ad5f-2de6e73e2862"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the result in "release" mode?
+
+Snippet X:
+```rust
+fn main() {
+    let x: &[&str; 3] = &["Rust", "JS", "Go"];
+    let y = x[3];
+}
+```
+
+Snippet Y:
+```rust
+fn main() {
+    let x: [&str; 3] = ["Rust", "JS", "Go"];
+    let y = x[3];
+}
+```
+"""
+prompt.distractors = [
+    "Both will work",
+    "X gives compilation error and Y gives runtime error",
+    "Both X and Y give compilation error",
+]
+answer.answer = "X give runtime error and Y give compilation error"
+context = """
+"""
+id = "18e5c0e4-5e5f-4ec8-91f6-41a5866192e0"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the output?
+
+```rust
+fn main() {
+    let fruit = Some("banana");
+
+    if let Some("banana" | "apple" | "pear") = fruit {
+        println!("This is a fruit we love!");
+    } else {
+        println!("This is not a fruit we care for.");
+    }
+}
+```
+"""
+prompt.distractors = ["Does not compile", "This is not a fruit we care for."]
+answer.answer = "This is a fruit we love!"
+context = """
+"""
+id = "65eb1b66-148c-4fcd-8d59-fd01d8c50c67"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the output?
+
+```rust
+fn main() {
+    let fruit = Some("banana");
+
+    if let Some("banana") | Some("apple") | Some("pear") = fruit {
+        println!("This is a fruit we love!");
+    } else {
+        println!("This is not a fruit we care for.");
+    }
+}
+```
+"""
+prompt.distractors = ["Does not compile", "This is not a fruit we care for."]
+answer.answer = "This is a fruit we love!"
+context = """
+"""
+id = "09e91e59-760f-45ec-a68c-b1f97688c723"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the output?
+
+```rust
+fn main() {
+    let mut v = vec!["hello", "rusty"];
+    let v1 = &mut v;
+    let v2 = &mut v;
+    println!("{}", v2[1]);
+}
+```
+"""
+prompt.distractors = [
+    "Does not compile",
+    "It will print \"hello\"",
+    "Runtime error",
+]
+answer.answer = "It will print \"rusty\""
+context = """
+"""
+id = "71c9795c-116b-4cba-af0c-392979b886e2"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the output?
+
+```rust
+const fn fun<const N: usize>() -> [i32; N] {
+    let mut res: [i32; N] = [1; N];
+    let mut i = 0;
+
+    while i < N {
+        res[i] = i as i32;
+        i += 1;
+    }
+
+    res
+}
+
+fn main(){
+    let a: [i32;3] = fun();
+    println!("{:?}", a);
+}
+```
+"""
+prompt.distractors = ["Does not compile", "[0, 0, 0]", "Runtime error"]
+answer.answer = "prints [0, 1, 2]"
+context = """
+"""
+id = "946cbc5d-b74f-474e-ba3f-0be18345fad8"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the output?
+
+```rust
+const fn hello() -> String {
+    return "Hello".to_string();
+}
+fn main(){
+    println!("{}", hello());
+}
+```
+"""
+prompt.distractors = ["Prints \"Hello\""]
+answer.answer = "Does not compile"
+context = """
+"""
+id = "2746aa0b-1b89-4016-916d-ac7736563023"
