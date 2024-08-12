@@ -324,3 +324,139 @@ answer.answer = "prints `!`"
 context = """
 """
 id = "fda34ba9-55d1-4f88-9b92-a2dc52fac2fd"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What will be the output?
+
+```rust
+fn main() {
+    let mut i = 0;
+    let result = loop {
+        if i > 4 {
+            break false;
+        }
+
+        if i > 5 {
+            break true;
+        } 
+        
+        i +=1;
+    };
+
+    println!("{result}");
+}
+```
+"""
+prompt.distractors = ["prints true", "prints 0", "Does not compile"]
+answer.answer = "prints true"
+context = """
+"""
+id = "978966e9-6fb0-407f-bfed-09eb2df950ba"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What will be the output?
+
+```rust
+fn main(){
+    let mut i = 0;
+
+     let x = 'i_loop: loop{
+        'j_loop: loop {
+            if i > 2 {
+                break 'i_loop 1
+            }
+            
+            if i > 4 {
+                break;
+            }
+            i += 1;
+        }
+        
+        'k_loop: loop {
+            break 'k_loop
+        }
+        
+    };
+    
+    println!("{x}");
+}
+```
+"""
+prompt.distractors = ["prints 4", "prints 2", "Does not compile"]
+answer.answer = "prints 1"
+context = """
+"""
+id = "8c15fe21-3ebc-4f50-8e97-000f6e6d87ba"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the correct syntax, if i want to store either x or y value in the z?
+
+"""
+prompt.distractors = ["""
+```rust
+fn main(){
+    let x = 3;
+    let y = 4;
+    
+    let z = if true {
+        x;
+    } else{
+        y;
+    };
+}
+```
+"""]
+answer.answer = """
+```rust
+fn main(){
+    let x = 3;
+    let y = 4;
+    
+    let z = if true {
+        x
+    } else{
+        y
+    };
+}
+```
+"""
+context = """
+"""
+id = "d60b1876-4b69-4cbd-89fe-88ee6f8a48ba"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What will be the output?
+
+```rust
+fn main() {
+    let y = {
+        let mut x = 3;
+        
+        while x < 5 {
+            x += 1;
+        }
+        
+        x
+    };
+
+    println!("{y}");
+}
+```
+"""
+prompt.distractors = ["prints 4", "prints 3", "Does not compile"]
+answer.answer = "prints 5"
+context = """
+"""
+id = "febb2654-cbf8-4dd3-a285-6050611bdba2"
