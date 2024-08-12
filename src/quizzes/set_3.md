@@ -1,4 +1,4 @@
-# Quiz - Set 1 
+# Quiz - Set 3 
 
 Collections of unorganized Rust Quizzes
 
