@@ -1,0 +1,326 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the output?
+
+```rust
+fn main() {
+    let msg = "Hello";
+    msg = "World";
+    println!("{msg}");
+}
+```
+"""
+prompt.distractors = ["World", "Hello"]
+answer.answer = "Does not compile"
+context = """
+"""
+id = "a7b14da5-3485-4c78-8deb-032dd65d91c3"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the output?
+
+```rust
+fn main() {
+    let i = 1337;
+    for j in 0..10 {
+        let i = j;
+    }
+    println!("{i}");
+}
+
+```
+"""
+prompt.distractors = ["Does not compile", "0", "10"]
+answer.answer = "1337"
+context = """
+"""
+id = "65173bd6-fee5-40d7-8aa8-05310ab508f9"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the output?
+
+```rust
+fn main() {
+    let mut x = 1337;
+    x = "Rust";
+    
+    println!("{x}");
+}
+```
+"""
+prompt.distractors = ["1337", "Rust", "Runtime error"]
+answer.answer = "Does not compile"
+context = """
+"""
+id = "7366ab43-5f2c-49a4-b737-f8503cab7c4d"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the output?
+
+```rust
+fn main() {
+    println!("{}", quiz());
+}
+
+fn quiz() -> bool {
+    true
+}
+```
+"""
+prompt.distractors = [
+    "Does not compile, we need to use `return true;`",
+    "Prints \"()\"",
+    "Runtime error",
+]
+answer.answer = "Prints \"true\""
+context = """
+"""
+id = "5a409ea5-b170-49dd-a7f0-0a2425548404"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What will be the output?
+
+```rust
+fn add(x: i32) -> String {
+    x + 1
+}
+
+fn main() {
+    let x = add(5);
+
+    println!("{x}");
+}
+```
+"""
+prompt.distractors = ["1", "6", "5"]
+answer.answer = "Does not compile"
+context = """
+"""
+id = "8e906376-da85-4015-ae8c-7390750a9804"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Why the following code does not compile?
+
+```rust
+fn main() {
+    let x = [1, 2, 3.4, 4, 5];
+    println!("{}", x[4]);
+} 
+```
+"""
+prompt.distractors = [
+    "Index is out of bounds",
+    "No, it will compile",
+    "The correct syntax is: `x.4`",
+]
+answer.answer = "mismatched types"
+context = """
+"""
+id = "32324748-4dd4-40f0-a0ba-61e2dfdbf00c"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+How to print the 2nd(i.e `2`) element from this?
+
+```rust
+let x = (1, 2, 3.4, 4, 5);
+```
+"""
+prompt.distractors = [
+    "println!(\"{}\",x[1]);",
+    "println!(\"{}\",x.2);",
+    "println!(\"{}\",x[2]);",
+]
+answer.answer = "println!(\"{}\",x.1)"
+context = """
+"""
+id = "4d14c11f-7b7c-4029-a054-71f8069bf2d3"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Will it compile?
+
+```rust
+fn main() {
+  let x = 1;
+  let x = 7.0;
+  println!("{x}");
+}
+```
+"""
+prompt.distractors = ["No"]
+answer.answer = "Yes"
+context = """
+"""
+id = "8e1b2013-adb7-425a-88fe-e7aa6d84af67"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What will be the output?
+
+```rust
+fn add(x: i8, y: i8) -> i8 {
+    x + y
+}
+
+fn main() {
+  let x = 1;
+  let y = 2;
+  println!("{}", add(x,y));
+}
+```
+"""
+prompt.distractors = [
+    "Does not compile since integer types default to i32",
+    "5",
+    "Panics!",
+]
+answer.answer = "3"
+context = """
+"""
+id = "8e1b2013-adb7-425a-88fe-e7aa6d84af66"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What will be the output?
+
+```rust
+fn main() {
+    let mut x: bool = 1;
+    println!("{x}");
+}
+```
+"""
+prompt.distractors = ["true", "false", "1"]
+answer.answer = "Does not compile"
+context = """
+"""
+id = "8e906376-da85-4015-ae8c-7390750a9803"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Which one works?
+
+Snippet X:
+```rust
+fn main() {
+    const NUM: i32 = 1;
+    println!("{NUM}");
+
+    const NUM: i32 = 2;
+    println!("{NUM}");
+
+}
+```
+
+Snippet Y:
+```rust
+const NUM: i32 = 1;
+
+fn main() {
+    println!("{NUM}");
+
+    const NUM: i32 = 2;
+    println!("{NUM}");
+
+}
+```
+"""
+prompt.distractors = ["Both X and Y works", "X works", "Y fails to compile"]
+answer.answer = "Y works"
+context = """
+"""
+id = "347f5f2e-e549-4e7c-bdd2-6a70419302ed"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Will it compile?
+
+```rust
+fn main() {
+  let x: f64 = 1.0;
+  let y: f32 = 2.0;
+  let z = x + y;
+  println!("{z}");
+}
+```
+"""
+prompt.distractors = ["Yes"]
+answer.answer = "No"
+context = """
+"""
+id = "ad676f1a-1d4e-4621-ae0d-db5522b8ad03"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What will be the output?
+
+```rust
+fn main(){
+    let mut a = [1,2,3];
+    a[3] = 4;
+    println!("{}", a[3]);
+}
+```
+"""
+prompt.distractors = ["3", "4", "Runtime error"]
+answer.answer = "Does not compile"
+context = """
+"""
+id = "a14ce577-5667-4ec4-86b6-d83122fe0f3a"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What will be the output?
+
+```rust
+fn main(){
+    let chars = ['R','u','s','t', '!'];
+    for c in chars {
+        if c != '!'{
+            continue;
+        }
+        println!("{c}");
+    }
+}
+```
+"""
+prompt.distractors = [
+    "prints all the characters except `!`",
+    "prints all the characters",
+    "Does not compile",
+]
+answer.answer = "prints `!`"
+context = """
+"""
+id = "fda34ba9-55d1-4f88-9b92-a2dc52fac2fd"

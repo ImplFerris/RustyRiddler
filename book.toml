@@ -7,6 +7,7 @@ title = "Rusty Riddler"
 
 [preprocessor.quiz]
 cache-answers = false
+fullscreen = true
 
 [output.html]
 git-repository-url = "https://github.com/ImplFerris/RustyRiddler"
