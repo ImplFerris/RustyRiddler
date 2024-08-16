@@ -257,3 +257,30 @@ answer.answer = "Y fails to compile"
 context = """
 """
 id = "65821627-c6f1-4f8e-aa3a-e43ce63458eb"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What is the output?
+
+```rust
+struct Ferris;
+
+fn main(){
+    let c = [Ferris, Ferris{}];
+    let p1 = &c[0] as *const Ferris;
+    let p2 = &c[0] as *const Ferris;
+    println!("{}", p1 == p2);
+}
+```
+"""
+prompt.distractors = ["Does not compile", "false", "unsafe block is missing"]
+answer.answer = "true"
+context = """
+A unit-like struct is a struct without any fields, defined by leaving off the list of fields entirely. Such a struct implicitly defines a constant of its type with the same name. 
+
+More details here:
+https://doc.rust-lang.org/reference/items/structs.html
+"""
+id = "1b337db9-cc33-486e-a664-db70dddd1d52"

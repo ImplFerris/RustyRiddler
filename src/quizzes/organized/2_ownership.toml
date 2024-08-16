@@ -1,0 +1,23 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Which syntax should you use to create a string that can be altered at runtime?
+
+"""
+prompt.distractors = ["""
+```rust
+let mut msg = "Hello";
+```
+""", """
+```rust
+let msg = "Hello";
+```
+""", "It can't be done"]
+answer.answer = """
+```rust
+let mut msg = String::from("Hello");
+```
+"""
+context = """
+"""
+id = "1049f3db-17fb-4657-91d4-b59a66afb162"

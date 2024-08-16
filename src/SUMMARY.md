@@ -7,3 +7,4 @@
   - [Set 3](./quizzes/fun/set_3.md)
 - [Based on Book](./quizzes/organized/intro.md)
   - [Basics](./quizzes/organized/1_basics.md)
+  - [Ownership](./quizzes/organized/2_ownership.md)

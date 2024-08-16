@@ -460,3 +460,25 @@ answer.answer = "prints 5"
 context = """
 """
 id = "febb2654-cbf8-4dd3-a285-6050611bdba2"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What will be the output?
+
+```rust
+fn main() {
+    let x = 1;
+    let mut x = x;
+    x +=1;
+
+    println!("{x}");
+}
+```
+"""
+prompt.distractors = ["prints 1", "Does not compile"]
+answer.answer = "prints 2"
+context = """
+"""
+id = "9ec8e67d-af6e-4280-91bd-f27e3af7674d"
