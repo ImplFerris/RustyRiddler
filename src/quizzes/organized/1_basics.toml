@@ -351,7 +351,7 @@ fn main() {
 ```
 """
 prompt.distractors = ["prints true", "prints 0", "Does not compile"]
-answer.answer = "prints true"
+answer.answer = "prints false"
 context = """
 """
 id = "978966e9-6fb0-407f-bfed-09eb2df950ba"
