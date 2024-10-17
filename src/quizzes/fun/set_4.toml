@@ -1,0 +1,107 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+Will it compile?
+
+```rust
+fn main(){
+    let x: u32 = get();
+    println!("{x}");
+}
+
+fn get() -> u32{
+    dv();
+}
+
+fn dv() -> !{
+    println!("Hello");
+    loop{}
+}
+```
+"""
+prompt.distractors = ["No"]
+answer.answer = "Yes"
+context = """
+"""
+id = "adc0a486-632c-4b07-8882-727c9c5136fa"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What will be the output?
+
+Snippet X:
+```rust
+fn main(){
+    let s = {
+        String::from("ImplRust").as_str()
+    };
+    println!("{s}");
+}
+```
+
+Snippet Y:
+```rust
+fn main(){
+    let s = {
+        String::from("ImplRust").as_str()
+    }.to_string();
+    println!("{s}");
+}
+```
+"""
+prompt.distractors = [
+    "X prints \"ImplRust\" and Y gives compilation error",
+    "X gives compilation error and Y gives runtime error",
+    "Both X and Y give compilation error",
+]
+answer.answer = "X gives compilation error and Y prints  \"ImplRust\""
+context = """
+"""
+id = "b02f4977-7338-4f62-b81d-0b5402284c14"
+
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """
+What will be the output?
+
+Snippet X:
+```rust
+use std::cell::RefCell;
+
+fn is_eq(rc: RefCell<String>) -> bool {
+    rc.borrow().len() == 4
+}
+
+fn main(){
+    let rc = RefCell::new("Rust".to_string());
+    println!("{}", is_eq(rc));
+}
+```
+
+Snippet Y:
+```rust
+use std::cell::RefCell;
+
+fn is_eq(rc: RefCell<String>) -> bool {
+    let rc = rc;
+    rc.borrow().len() == 4
+}
+
+fn main(){
+    let rc = RefCell::new("Rust".to_string());
+    println!("{}", is_eq(rc));
+}
+```
+"""
+prompt.distractors = [
+    "X gives compilation error and Y prints  \"true\"",
+    "X gives compilation error and Y gives runtime error",
+    "Both X and Y give compilation error",
+]
+answer.answer = "X prints \"true\" and Y gives compilation error"
+context = """
+"""
+id = "87d326da-f97c-49cd-9a48-ec6fbe07fd2d"
